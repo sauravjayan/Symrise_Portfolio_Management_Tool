@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}       {# import bootstrap4/bootstrap3 #}
+{% bootstrap_css %}         {# Embed Bootstrap CSS #}
+{% bootstrap_javascript jquery='full' %}  {# Embed Bootstrap JS+jQuery #}
+{{ form.media }}            {# Adds date-picker required JS and CSS #}
+
+{% block title %}Update Product{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+<h1>Product update:</h1>
+
+<div class="jumbotron">
+
+<form method="post">
+
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Update" name="create" class="btn btn-success btn-lg">
+
+</form>
+
+</div>
+
+</div>
+
+<style>
+    .btn{
+        margin-top: 40px;
+    }
+    .jumbotron{
+        margin-top: 50px;
+        padding-bottom: 25px;
+    }
+    h1{
+        margin-top: 40px;
+        font-family: 'Nunito Sans', sans-serif;
+        font-weight: bold;
+    }
+</style>
+
+{% endblock %}

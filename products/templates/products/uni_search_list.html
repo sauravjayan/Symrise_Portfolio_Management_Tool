@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Flavours{% endblock %}
+
+{% block body %}
+
+<div class="container">
+   
+    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade mycarousal" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+              <img src="{% static 'images/bev1.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/bev.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/cake.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/egg.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+        </div>
+    </div>
+    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a href="{% url 'products:create' %}" class="btn btn-outline-success">Add Product</a>
+              </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" method="POST">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <input type="submit" value="Search" class="btn btn-outline-success my-2 my-sm-0" name="submit">
+          </form>
+        </div>
+      </nav>
+    
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+        {% for pd in pd_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'products:product_detail' slug=pd.slug %}">{{ pd.six_digit_code }} {{ pd.name }}</a>
+        
+        {% if pd.expiry_alert %}
+        <span>
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-exclamation-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          </svg>
+        </span>
+        {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+<style>
+    a:hover{
+        text-decoration: none;
+        color: green;
+    }
+    .mycarousal{
+        margin-bottom: 10px;
+    }
+    a{
+        color: black;
+    }
+    .list-group{
+        margin-top: 20px;
+    }
+
+    .carousel-item{
+    height: 250px;
+    }
+    .filter{
+      margin-left: 15px;
+    }
+
+</style>
+
+{% endblock %}

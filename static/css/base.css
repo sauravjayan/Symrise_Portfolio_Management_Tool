@@ -1,0 +1,21 @@
+.mynav{
+    background-color: white;
+}
+
+h1.welcometext{
+    text-align: center;
+}
+
+.signup{
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.signuptitle{
+    padding-bottom: 3%;
+}
+
+.carousel-item{
+    height: 500px;
+} 
+

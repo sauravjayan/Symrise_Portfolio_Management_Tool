@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+<!-- {% load bootstrap4 %} -->
+{% load static %}
+
+{% block title %}Welcome{% endblock %}
+{% block body %}
+<div id="carouselExampleSlidesOnly" class="carousel slide mycarousal" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+          <img src="{% static 'images/bev1.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/bev.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/cake.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/egg.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+</div>
+    <div class="container bot">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class=" jumbotron hometitle">
+              <h1 class="welcometext">Welcome to your Portfolio Management Tool</h1>
+          </div>
+        </div> 
+        <div class="col-sm-6">
+          <div class="signup">
+            <h3 class="signuptitle">Sign Up</h3>
+            <form method="POST">
+                {% bootstrap_form form %}
+                {% csrf_token %}
+                <input type="submit" value="Sign up" name="submit" class="btn btn-outline-success">    
+            </form>
+          </div>
+        </div> 
+      </div>
+    </div>
+
+    <style>
+      .bot{
+        margin-top: 40px;
+      }
+    </style>
+{% endblock %}
+
+
+

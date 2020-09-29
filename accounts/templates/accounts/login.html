@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap4 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Log In</title>
+    <style>
+        body.my-body{
+            background-image: url({% static 'images/symrise.jpg' %});
+        }
+
+        .logintitle{
+            padding-bottom: 3%;
+        }
+        .login{
+            width: 50%;
+            height: 50%;
+            margin: auto;
+            margin-top: 10%;
+        }
+        #button{
+            margin-top: 3%;
+        }
+    </style>
+</head>
+<body class="my-body">
+    <div class="login">
+    <div class="jumbotron container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <h3 class="logintitle">Log In</h3>
+        <form method="POST">
+            {% bootstrap_form form %}
+            {% csrf_token %}
+            <input type="submit" value="Log in" name="login" class="btn btn-success" id="button">
+        </form>
+    </div>
+    </div>
+</body>
+</html>
+

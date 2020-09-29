@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}       {# import bootstrap4/bootstrap3 #}
+
+
+{% block title %}Update Quantity{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+<h1>Quantity update:</h1>
+
+<div class="jumbotron">
+
+<h5>Enter the value of the new quantity in grams</h5>
+<br>
+
+<form method="post">
+
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Update" name="create" class="btn btn-success btn-lg">
+
+</form>
+
+</div>
+
+</div>
+
+<style>
+    .btn{
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    .jumbotron{
+        margin-top: 50px;
+        padding-bottom: 25px;
+    }
+    h1{
+        margin-top: 40px;
+        font-family: 'Nunito Sans', sans-serif;
+        font-weight: bold;
+    }
+</style>
+
+{% endblock %}

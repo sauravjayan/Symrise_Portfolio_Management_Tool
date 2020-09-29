@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Filter{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+          Custom Filters
+        </div>
+        <div class="card-body">
+            <div class="alert alert-warning" role="alert">
+                **All fields are mandatory**
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="row row1">
+                    <div class="col">
+                        <label for="flv" class="head">Flavour Key</label>
+                        <p class="note">* Hold down the CTRL ( PC ) or the COMMAND ( Mac ) key to select multiple options. </p>
+                        {{ form.flavour_key }}
+                    </div>
+                </div>
+                <div class="row row2">
+                    <div class="col">
+                        <label for="alc" class="head">Alcohol Content ( in % )</label>
+                        {{ form.alcohol_content }}
+                    </div>
+                    <div class="col">
+                        <label for="pro" class="head">Production Site</label>
+                        {{ form.production_site }}
+                    </div>
+                    <div class="col">
+                        <label for="sol" class="head">Solubility</label>
+                        {{ form.solubility }}
+                    </div>
+                </div>
+                <input type="submit" value="Filter" class="btn btn-outline-success btn-lg btn-block fil">
+            </form>            
+      </div>
+</div>
+
+<style>
+    .fil{
+        margin-top: 40px;
+    }
+    .card-header{
+        text-align: center;
+        font-size: 1.6em;
+    }
+    .card{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .note{
+        font-size: 0.73em;
+        font-style: italic;
+        margin-bottom: 2px;
+        margin-top: 15px;
+    }
+    .head{
+        font-size: 1.2em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .row2, .row1{
+        margin-top: 40px;
+    }
+    ul{
+    list-style-type: none;
+    padding-left: 0;
+    }
+   
+</style>
+
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="card" style="width: 75%;">
+        <img src="{% static 'images/symrise.jpg' %}" class="card-img-top" alt="Image not Found">
+        <div class="card-body">
+        <h2 class="card-header">{{ product.six_digit_code}} {{ product.name }}</h2>
+
+        <div class="row">
+            <div class="col-md-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item disabled" role="tab" ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                  </svg> Contents</a>  
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Stock</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Technical Information</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Regulatory Information</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Additional Information</a>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                    <table class="table">
+                        <tbody>
+                          <tr>
+                            <th scope="row">Expiry Date</th>
+                            <td>{{ product.expiry_date }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Order Date</th>
+                            <td>
+                              {% if product.order_date == None %}
+                              N/A
+                              {% else %}
+                              {{ product.order_date }}
+                              {% endif %}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Arrival Date</th>
+                            <td>
+                              {% if product.arrival_date == None %}
+                              N/A
+                              {% else %}
+                              {{ product.arrival_date }}
+                              {% endif %}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Lab Location</th>
+                            <td>{{ product.lab_location }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Quantity</th>
+                            {% if product.quantity == None %}
+                              <td>0 g</td>
+                            {% else %}
+                              <td>{{ product.quantity }} g</td>
+                            {% endif %}
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                    <table class="table">
+                        <tbody>
+                          <tr>
+                            <th scope="row">Physical Form</th>
+                            <td>{{ product.physical_form }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Solubility</th>
+                            <td>{{ product.solubility }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Shelf Life</th>
+                            <td>{{ product.shelf_life }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Storage Condition</th>
+                            <td>{{ product.storage_condition }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Production Site</th>
+                            <td>{{ product.production_site|title }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                    <table class="table">
+                        <tbody>
+                          <tr>
+                            <th scope="row">Legal Name</th>
+                            <td>{{ product.legal_name }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Alcohol Content</th>
+                            <td>{{ product.alcohol_content }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Halal Status</th>
+                            <td>{{ product.halal_status }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                            <th scope="row">Sales Status</th>
+                            <td>{{ product.sales_status }}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Portfolio Manager</th>
+                            <td>{{ product.portfolio_manager }}</td>
+                            </tr>
+                            <th scope="row">WLC</th>
+                            <td>
+                              {% if product.wlc %}
+                              Yes
+                              {% else %}
+                              No
+                              {% endif %}
+                            </td>
+                            </tr>
+                            <th scope="row">Flavour Key</th>
+                            <td>{{ product.flavour_key }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <!-- end -->
+        
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <a href="{% url 'products:update' pk=product.id %}" class="btn btn-outline-success btn-block">Update</a>
+            <a href="{% url 'products:delete' pk=product.id %}" class="btn btn-outline-danger btn-block">Delete</a>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card{
+        margin: auto;
+    }
+    .card-header{
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .sub-group{
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .tab-content{
+      height: 100px;
+    }
+    
+</style>
+{% endblock %}
