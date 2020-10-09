@@ -1,4 +1,4 @@
-# symrise_portfolio_management_tool
+# QR code enabled Inventory Management Tool
 
 This is a Django based web application to restructure inventory management at Symrise Dubai. It filled gaps that were identified after a careful analysis of the current structure of operations. The tool was pitched to management.
 
